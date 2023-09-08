@@ -1,0 +1,34 @@
+<div class="container mt-5 pt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-xl-4 col-md-6">
+
+        <div class="card">
+          <div class="card-header">
+            LISTA DE LIBROS
+          </div>
+          <div class="card-body">
+            <form [formGroup]="formularioLibro">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Ingresar nuevo libro" formControlName="nombre">
+                <button class="btn btn-primary" type="button" [disabled]="formularioLibro.invalid"
+                (click)="agregarLibro()"
+                >Agregar Libro</button>
+              </div>
+            </form>
+
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let Libros of listaLibros">
+                <div class="d-flex-justify-content-between">
+                  <label>{{Libros.nombreLibro}}</label>
+                  <button class="btn btn-danger btn-sm" type="button"
+                (click)="eliminarLibro(Libros)"
+                >Eliminar Libro</button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>
