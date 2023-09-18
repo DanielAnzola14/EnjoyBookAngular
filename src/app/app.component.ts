@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder,FormGroup,Validators}from'@angular/forms'
-import { Libros } from './interfaces/libros';
+import {FormBuilder,FormGroup,Validators}from'@angular/forms';
+import { Libro } from './interfaces/libros';
 import { LibrosService } from './servicios/libros.service';
 
 
@@ -11,7 +11,7 @@ import { LibrosService } from './servicios/libros.service';
 })
 export class AppComponent implements OnInit{
 
-  listaLibros:Libros[]=[];
+  listaLibros:Libro[]=[];
   formularioLibro:FormGroup;
   
   constructor (
@@ -20,50 +20,50 @@ export class AppComponent implements OnInit{
   ){
 
     this.formularioLibro = this.fb.group({
-        nombre:['',Validators.required],
-        autor:['',Validators.required],
-        editorial:['',Validators.required],
-        numPaginas:['',Validators.required],
+        nombreLibro:['',Validators.required],
+        autorLibro:['',Validators.required],
+        editorialLibro:['',Validators.required],
+        numPag:['',Validators.required],
         caracteristicas:['',Validators.required]
     });
   }
 
-    obtenerLibros(){
+  obtenerLibros(){
       this._ServicioLibro.getList().subscribe({
         next:(data)=>{
           this.listaLibros = data;
         },error:(e)=>{}
       });
-    }
+  }
 
-    ngOnInit(): void {
+  ngOnInit(): void {
       this.obtenerLibros();
-    }
+  }
 
-    agregarLibro(){
-      const request:Libros = {
+  agregarLibro(){
+      const request:Libro = {
         idLibro: 0,
-        nombreLibro: this.formularioLibro.value.nombre,
-        autor: this.formularioLibro.value.autor,
-        editorial: this.formularioLibro.value.editorial,
-        numPaginas: this.formularioLibro.value.numPaginas,
+        nombreLibro: this.formularioLibro.value.nombreLibro,
+        autorLibro: this.formularioLibro.value.autorLibro,
+        editorialLibro: this.formularioLibro.value.editorialLibro,
+        numPag: this.formularioLibro.value.numPag,
         caracteristicas: this.formularioLibro.value.caracteristicas
       }
-      this._ServicioLibro.add(request).subscribe({
-        next:(data)=>{
-          this.listaLibros.push(data);
-          this.formularioLibro.patchValue({
-            nombreLibro:"",
-            autor:"",
-            editorial:"",
-            numPaginas:0,
-            caracteristicas:""
+  this._ServicioLibro.add(request).subscribe({
+    next:(data)=>{
+        this.listaLibros.push(data);
+        this.formularioLibro.patchValue({
+          nombreLibro:"",
+          autorLibro:"",
+          editorialLibro:"",
+          numPag:"",
+          caracteristicas:""
           });
         },error:(e)=>{}
       });
-    }
+  }
 
-    eliminarLibro(libro:Libros){
+    eliminarLibro(libro:Libro){
       this._ServicioLibro.delete(libro.idLibro).subscribe({
         next:(data)=>{
             const nuevoLibro = this.listaLibros.filter(item => item.idLibro != libro.idLibro)

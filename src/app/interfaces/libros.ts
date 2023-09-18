@@ -1,8 +1,8 @@
-export interface Libros {
+export interface Libro {
     idLibro:number,
-    nombreLibro:String,
-    autor:string,
-    editorial:string,
-    numPaginas:number,
+    nombreLibro:string,
+    autorLibro:string,
+    editorialLibro:string,
+    numPag:number,
     caracteristicas:string
 }
