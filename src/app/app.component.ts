@@ -21,10 +21,10 @@ export class AppComponent implements OnInit{
 
     this.formularioLibro = this.fb.group({
         nombreLibro:['',Validators.required],
-        autorLibro:['',Validators.required],
-        editorialLibro:['',Validators.required],
-        numPag:['',Validators.required],
-        caracteristicas:['',Validators.required]
+        autor:['',Validators.required],
+        editorial:['',Validators.required],
+        paginas:['',Validators.required],
+        estadoLibro:['',Validators.required]
     });
   }
 
@@ -44,20 +44,20 @@ export class AppComponent implements OnInit{
       const request:Libro = {
         idLibro: 0,
         nombreLibro: this.formularioLibro.value.nombreLibro,
-        autorLibro: this.formularioLibro.value.autorLibro,
-        editorialLibro: this.formularioLibro.value.editorialLibro,
-        numPag: this.formularioLibro.value.numPag,
-        caracteristicas: this.formularioLibro.value.caracteristicas
+        autor: this.formularioLibro.value.autor,
+        editorial: this.formularioLibro.value.editorial,
+        paginas: this.formularioLibro.value.paginas,
+        estadoLibro: this.formularioLibro.value.estadoLibro
       }
   this._ServicioLibro.add(request).subscribe({
     next:(data)=>{
         this.listaLibros.push(data);
         this.formularioLibro.patchValue({
           nombreLibro:"",
-          autorLibro:"",
-          editorialLibro:"",
-          numPag:"",
-          caracteristicas:""
+          autor:"",
+          editorial:"",
+          paginas:"",
+          estadoLibro:""
           });
         },error:(e)=>{}
       });

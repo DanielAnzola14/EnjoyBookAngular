@@ -1,5 +1,5 @@
 export const environment = {
     production:true,
-    endPoint:"http://www.enjoybookapp.somee.com/api/"
+    endPoint:"https://localhost:7156/api/"
 
 };

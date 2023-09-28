@@ -1,6 +1,42 @@
-<div class="container mt-5 pt-5">
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary justify-content-center">
+  <a class="navbar-brand" href="#" justify-content-center>ENJOYBOOK</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto justify-content-center">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Inicio<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Vender Libro</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Alquilar Libro</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Libros
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Busca un libro" aria-label="Busca un Libro">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+  </div>
+</nav>
+
+<div class="container">
   <div class="row justify-content-center">
-    <div class="col-12 col-xl-4 col-md-3">
+    <div>
 
         <div class="card">
           <div class="card-header">
@@ -8,12 +44,12 @@
           </div>
           <div class="card-body">
             <form [formGroup]="formularioLibro">
-            <div class="d-flex-justify-content-start">
+            <div class="d-flex-justify-content-end">
                 <input type="text" class="form-control" placeholder="Ingresar nuevo libro" formControlName="nombreLibro">
-                <input type="text" class="form-control" placeholder="Ingresar el autor" formControlName="autorLibro">
-                <input type="text" class="form-control" placeholder="Ingresa la editorial" formControlName="editorialLibro">
-                <input type="text" class="form-control" placeholder="Ingresar el # de paginas" formControlName="numPag">
-                <input type="text" class="form-control" placeholder="Ingresa estado del libro" formControlName="caracteristicas">
+                <input type="text" class="form-control" placeholder="Ingresar el autor" formControlName="autor">
+                <input type="text" class="form-control" placeholder="Ingresa la editorial" formControlName="editorial">
+                <input type="text" class="form-control" placeholder="Ingresar el # de paginas" formControlName="paginas">
+                <input type="text" class="form-control" placeholder="Ingresa estado del libro" formControlName="estadoLibro">
                 <button class="btn btn-primary" type="button" [disabled]="formularioLibro.invalid"
                 (click)="agregarLibro()"
                 > Agregar Libro</button>
@@ -24,10 +60,12 @@
           <div class="card-header">LISTA DE LIBROS</div>
               <li class="list-group-item" *ngFor=" let libro of listaLibros">
                 <div class="d-flex-justify-content-start">
-                  <label>{{libro.nombreLibro}} - {{libro.autorLibro}}</label>
+                  <label>{{libro.nombreLibro}} - {{libro.autor}} - {{libro.editorial}} - {{libro.paginas}} - 
+                    {{libro.estadoLibro}}
+                  </label>
                 </div>
                 <div class="d-flex-justify-content-end">
-                  <button class="btn btn-danger btn-sm" type="button"
+                  <button class="btn btn-danger btn-sm end" type="button"
                 (click)="eliminarLibro(libro)"
                 >Eliminar Libro</button>
                 </div>

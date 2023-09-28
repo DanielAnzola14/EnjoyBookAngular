@@ -10,7 +10,7 @@ import { Libro } from '../interfaces/libros';
 })
 export class LibrosService {
   private endPoint:string = environment.endPoint;
-  private apiUrl:string = this.endPoint+"Libro/";
+  private apiUrl:string = this.endPoint+"Libros/";
   constructor(private http:HttpClient) {}
 
   getList():Observable<Libro[]>{
